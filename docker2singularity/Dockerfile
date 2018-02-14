@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM docker:18.02
 
 #########################################################
 # Master Base with docker2singularity
