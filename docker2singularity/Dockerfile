@@ -6,7 +6,7 @@ FROM ubuntu:16.04
 #########################################################
 
 RUN apk add --update automake libtool m4 autoconf alpine-sdk linux-headers openssl-dev
-RUN apk add --update libuuid squashfs-tools libarchive-dev git python3 util-linux-dev
+RUN apk add --update libuuid squashfs-tools libarchive-dev git python util-linux-dev
 
 # Install Singularity from Github
 WORKDIR /tmp

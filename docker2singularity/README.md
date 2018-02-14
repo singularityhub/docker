@@ -5,13 +5,14 @@ This is an inherited container build from [docker2singularity](https://www.githu
 ## Build
 
 ```
-docker build -t docker2singularity .
+docker build -f Dockerfile.dev -t vanessa/singularity:2docker-dev .
+docker build -f Dockerfile.dev -t vanessa/singularity:2docker .
 ```
 
 ## Usage
 
 ```
-docker run docker2singularity
+docker run vanessa/singularity:2docker-dev
 USAGE: docker2singularity [-m "/mount_point1 /mount_point2"] [options] docker_image_name
 OPTIONS:
 
