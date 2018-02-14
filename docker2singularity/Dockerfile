@@ -5,21 +5,8 @@ FROM ubuntu:16.04
 # docker build -t docker2singularity .
 #########################################################
 
-RUN apt-get update && \
-    apt-get -y install git \
-                   build-essential \
-                   libtool \
-                   squashfs-tools \
-                   autotools-dev \
-                   automake \
-                   libarchive-dev \
-                   autoconf \
-                   debootstrap \
-                   yum \
-                   uuid-dev \
-                   libssl-dev \
-                   python3-pip
-
+RUN apk add --update automake libtool m4 autoconf alpine-sdk linux-headers openssl-dev
+RUN apk add --update libuuid squashfs-tools libarchive-dev git python3 util-linux-dev
 
 # Install Singularity from Github
 WORKDIR /tmp
@@ -31,4 +18,4 @@ ADD docker2singularity.sh /docker2singularity.sh
 RUN chmod a+x docker2singularity.sh
 RUN mkdir -p /usr/local/var/singularity/mnt
 
-ENTRYPOINT ["docker-entrypoint.sh", "/docker2singularity.sh"]
+#ENTRYPOINT ["/docker2singularity.sh"]
