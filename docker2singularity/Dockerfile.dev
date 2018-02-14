@@ -18,4 +18,4 @@ ADD docker2singularity.sh /docker2singularity.sh
 RUN chmod a+x docker2singularity.sh
 RUN mkdir -p /usr/local/var/singularity/mnt
 
-#ENTRYPOINT ["/docker2singularity.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh","/docker2singularity.sh"]
