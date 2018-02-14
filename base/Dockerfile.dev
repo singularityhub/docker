@@ -1,24 +1,12 @@
-FROM ubuntu:16.04
+FROM docker:18.02
 
 ##########################################
 # Singularity Development Base
+# docker build -t vanessa/singularity:dev
 ##########################################
 
-RUN apt-get update && \
-    apt-get -y install git \
-                   build-essential \
-                   libtool \
-                   squashfs-tools \
-                   autotools-dev \
-                   automake \
-                   libarchive-dev \
-                   autoconf \
-                   debootstrap \
-                   yum \
-                   uuid-dev \
-                   libssl-dev \
-                   python3-pip
-
+RUN apk add --update automake libtool m4 autoconf alpine-sdk linux-headers openssl-dev
+RUN apk add --update libuuid squashfs-tools libarchive-dev git python util-linux-dev rsync
 
 # Install Singularity from Github
 WORKDIR /tmp
@@ -27,5 +15,7 @@ RUN git clone -b development https://github.com/singularityware/singularity.git 
 
 WORKDIR /
 RUN mkdir -p /usr/local/var/singularity/mnt
+
+ENTRYPOINT ["docker-entrypoint.sh","singularity"]
 
 ENTRYPOINT ["singularity"]
