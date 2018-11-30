@@ -10,7 +10,7 @@ RUN apk add --update libuuid squashfs-tools libarchive-dev git python util-linux
 
 # Install Singularity from Github
 WORKDIR /tmp
-RUN git clone https://github.com/singularityware/singularity.git && \
+RUN git clone -b vault/release-2.6 https://github.com/sylabs/singularity.git && \
     cd /tmp/singularity && ./autogen.sh && ./configure --prefix=/usr/local && make && make install
 
 WORKDIR /
